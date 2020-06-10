@@ -24,10 +24,10 @@ function abs(x){return (x<0?-x:x);}
     sq[i]+=$i*$i ; 
     if (NR>1) {
       diff=$i-prev[i];
-      if (    diff  < mindiff[i]) mindiff[i] =     diff;
-      if (    diff  > maxdiff[i]) maxdiff[i] =     diff;
-      if (abs(diff) < mindiff[i]) mindiff[i] = abs(diff);
-      if (abs(diff) > maxdiff[i]) maxdiff[i] = abs(diff);
+      if (    diff  < mindiff[i])    mindiff[i] =     diff;
+      if (    diff  > maxdiff[i])    maxdiff[i] =     diff;
+      if (abs(diff) < mindiff[i]) absmindiff[i] = abs(diff);
+      if (abs(diff) > maxdiff[i]) absmaxdiff[i] = abs(diff);
       totaldiff[i]+=diff
       sqdiff[i]+=diff*diff
     }
