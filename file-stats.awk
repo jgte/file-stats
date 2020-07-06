@@ -83,7 +83,7 @@ BEGIN {
   n_iter=ENVIRON["n_iter"];
   #enforce defaults
   if (length(sigma)  == 0) sigma=3
-  if (length(n_iter) == 0) n_iter=1
+  if (length(n_iter) == 0) n_iter=0
 } {
   #load the data for this line
   for(i=1;i<=NF;i++)
