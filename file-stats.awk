@@ -57,10 +57,20 @@ function compute_stats(d,nrows,ncols,m,s,label){
   }
   #assign relevant statistics for later
   for( i = 1 ; i <= ncols ; i++ ){
-    m[i]=total[i]/c[i];
-    s[i]=sqrt(sq[i]*c[i]-total[i]**2)/c[i];
-    md[i]=totaldiff[i]/(c[i]-1);
-    sd[i]=sqrt(sqdiff[i]*(c[i]-1)-totaldiff[i]**2)/(c[i]-1);
+    if (c[i]>0) {
+      m[i]=total[i]/c[i];
+      s[i]=sqrt(sq[i]*c[i]-total[i]**2)/c[i];
+    } else {
+      m[i]=0;
+      s[i]=0;
+    }
+    if (c[i]>1) {
+      md[i]=totaldiff[i]/(c[i]-1);
+      sd[i]=sqrt(sqdiff[i]*(c[i]-1)-totaldiff[i]**2)/(c[i]-1);
+    } else {
+      md[i]=0;
+      sd[i]=0;
+    }
   }
   #show the statistics
   show_stat("min",         label, min,       ncols);
