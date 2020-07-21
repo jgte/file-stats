@@ -61,8 +61,17 @@ function compute_stats(d,nrows,ncols,m,s,label){
       m[i]=total[i]/c[i];
       s[i]=sqrt(sq[i]*c[i]-total[i]**2)/c[i];
     } else {
-      m[i]=0;
-      s[i]=0;
+               m[i]=0;
+               s[i]=0;
+             min[i]=0;
+             max[i]=0;
+          absmin[i]=0;
+          absmax[i]=0;
+         mindiff[i]=0;
+         maxdiff[i]=0;
+      absmindiff[i]=0;
+      absmaxdiff[i]=0;
+
     }
     if (c[i]>1) {
       md[i]=totaldiff[i]/(c[i]-1);
