@@ -40,7 +40,7 @@ function compute_stats(d,nrows,ncols,m,s,label){
         if (abs(d[l,i]) < absmin[i]) absmin[i] = abs(d[l,i]);
         if (abs(d[l,i]) > absmax[i]) absmax[i] = abs(d[l,i]);
         total[i]+=d[l,i] ;
-        sq[i]+=d[l,i]*d[l,i] ; 
+        sq[i]+=d[l,i]*d[l,i] ;
         #handle sequential diff statistics
         if (c[i]>1) {
           diff=d[l,i]-prev[i];
@@ -60,6 +60,7 @@ function compute_stats(d,nrows,ncols,m,s,label){
     if (c[i]>0) {
       m[i]=total[i]/c[i];
       s[i]=sqrt(sq[i]*c[i]-total[i]**2)/c[i];
+      r[i]=sqrt(s[i]**2+m[i]**2)
     } else {
                m[i]=0;
                s[i]=0;
@@ -76,9 +77,11 @@ function compute_stats(d,nrows,ncols,m,s,label){
     if (c[i]>1) {
       md[i]=totaldiff[i]/(c[i]-1);
       sd[i]=sqrt(sqdiff[i]*(c[i]-1)-totaldiff[i]**2)/(c[i]-1);
+      rd[i]=sqrt(sd[i]**2+md[i]**2)
     } else {
       md[i]=0;
       sd[i]=0;
+      rd[i]=0;
     }
   }
   #show the statistics
@@ -88,12 +91,14 @@ function compute_stats(d,nrows,ncols,m,s,label){
   show_stat("absmax",      label, absmax,    ncols);
   show_stat("mean",        label, m,         ncols);
   show_stat("std",         label, s,         ncols);
+  show_stat("rms",         label, r,         ncols);
   show_stat("min-diff",    label, mindiff,   ncols);
   show_stat("max-diff",    label, maxdiff,   ncols);
   show_stat("absmin-diff", label, absmindiff,ncols);
   show_stat("absmax-diff", label, absmaxdiff,ncols);
   show_stat("mean-diff",   label, md,        ncols);
   show_stat("std-diff",    label, sd,        ncols);
+  show_stat("rms-diff",    label, rd,        ncols);
   show_stat("count",       label, c,         ncols);
 }
 
