@@ -59,8 +59,8 @@ function compute_stats(d,nrows,ncols,m,s,label){
   for( i = 1 ; i <= ncols ; i++ ){
     if (c[i]>0) {
       m[i]=total[i]/c[i];
-      s[i]=sqrt(sq[i]*c[i]-total[i]**2)/c[i];
-      r[i]=sqrt(s[i]**2+m[i]**2)
+      s[i]=sqrt(sq[i]*c[i]-total[i]*total[i])/c[i];
+      r[i]=sqrt(s[i]*s[i]+m[i]*m[i])
     } else {
                m[i]=0;
                s[i]=0;
@@ -72,12 +72,11 @@ function compute_stats(d,nrows,ncols,m,s,label){
          maxdiff[i]=0;
       absmindiff[i]=0;
       absmaxdiff[i]=0;
-
     }
     if (c[i]>1) {
       md[i]=totaldiff[i]/(c[i]-1);
-      sd[i]=sqrt(sqdiff[i]*(c[i]-1)-totaldiff[i]**2)/(c[i]-1);
-      rd[i]=sqrt(sd[i]**2+md[i]**2)
+      sd[i]=sqrt(sqdiff[i]*(c[i]-1)-totaldiff[i]*totaldiff[i])/(c[i]-1);
+      rd[i]=sqrt(sd[i]*sd[i]+md[i]*md[i])
     } else {
       md[i]=0;
       sd[i]=0;
